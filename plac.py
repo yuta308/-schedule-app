@@ -35,7 +35,7 @@ df_new = pd.DataFrame({'日程': str(date),
                         'ラベル': label, 
                         'メモ': memo, 
                         '確定/未確定': confirm,
-                        'チェック':'□'}, index=[priority])    
+                        'チェック':' '}, index=[priority])    
         
 if run:
     st.session_state.mdf = pd.concat([st.session_state.mdf, df_new], axis=0)
