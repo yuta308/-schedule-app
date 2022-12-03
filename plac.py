@@ -1,6 +1,5 @@
 import streamlit as st
 import datetime
-import streamlit as st
 import pandas as pd
 import japanize_matplotlib
 import matplotlib.pyplot as plt
