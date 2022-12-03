@@ -1,3 +1,3 @@
-japanize_matplotlib
-matplotlib
-streamlit
+japanize-matplotlib==1.1.3
+matplotlib==3.5.1
+streamlit==1.15.2
