@@ -5,7 +5,7 @@ import japanize_matplotlib
 import matplotlib.pyplot as plt
 
 def TablePlot(df,outputPath,w,h):
-    fig, ax = plt.subplots(figsize=(w,h))
+    fig,ax = plt.subplots(figsize=(w,h))
     ax.axis('off')
     ax.table(cellText=df.values,
              colLabels=df.columns,
