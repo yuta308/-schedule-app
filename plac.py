@@ -4,6 +4,9 @@ import pandas as pd
 import japanize_matplotlib
 import matplotlib.pyplot as plt
 
+
+#この関数では、DataFrameを画像にするための関数
+#Japanaize_matoplotlibを使っているので、日本語に対応
 def TablePlot(df,outputPath,w,h):
     fig,ax = plt.subplots(figsize=(w,h))
     ax.axis('off')
@@ -13,9 +16,10 @@ def TablePlot(df,outputPath,w,h):
              bbox=[0,0,1,1],)
     plt.savefig(outputPath)
 
+#session_stateはStreamlitの特性上どうしてもボタンが押されるたびにリロードしてしまい内容が消えてしまう（一時保存されない）このsession_stateを用いることで、一時保存を可能にしている。
 if "mdf" not in st.session_state:
     st.session_state.mdf = pd.DataFrame(columns=['日程', '開始時刻', '終了時刻', 'ラベル', 'メモ','確定/未確定','チェック'])
-
+#データの集め方はst.formsでデータをそれぞれ収集
 col0, col1, col2, col3, col4, col5, col6,= st.columns(7)
 priority = col0.selectbox("優先順位",('大','中','小'))
 date = col1.date_input( "date", datetime.date(2022, 12, 1))
@@ -25,7 +29,7 @@ label = col4.selectbox('ラベル',('仕事', '旅','バイト', '部活動', '�
 memo = col5.text_area('メモ')
 confirm = col6.selectbox('未確定/確定',('未確定', '確定'))
 
-
+#大まかな流れは'submit'ボタンが押された時にcloumnsが対応したDataFrame’df_new’が作成される。新しく作成した  df＿newをPandasのconcatを使って、st.session_state.mdfの表に行を追加している。
 run = st.button('Submit')
 
 df_new = pd.DataFrame({'日程': str(date), 
