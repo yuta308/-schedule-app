@@ -5,6 +5,10 @@ import japanize_matplotlib
 import matplotlib.pyplot as plt
 
 
+st.header('スケジュールの画像作成ツール')
+st.caption('このツールでは、入力した内容を画像に変換し、ダウンロードすることができます')
+st.caption('※件数に上限はございません')
+
 #この関数では、DataFrameを画像にするための関数
 #Japanaize_matoplotlibを使っているので、日本語に対応
 def TablePlot(df,outputPath,w,h):
@@ -39,7 +43,11 @@ df_new = pd.DataFrame({'日程': str(date),
                         'メモ': memo, 
                         '確定/未確定': confirm,
                         'チェック':' '}, index=[priority])    
-        
+
+
+
+#ここでは、最初に作成したTable_Plot関数を用いて、画像をダウンロードできるようにしている
+# 行の追加と同時に、ダウンロードボタンが表示されるため、件数に縛られることなく、追加できる
 if run:
     st.session_state.mdf = pd.concat([st.session_state.mdf, df_new], axis=0)
     st.table(st.session_state.mdf)
